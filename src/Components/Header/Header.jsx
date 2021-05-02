@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import useSound from 'use-sound';
+import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
 import boopSfx from '../../assets/bgm2.mp3';
 import music from '../../assets/music.svg';
@@ -23,15 +25,17 @@ const Header = () => {
 
   return (
     <header className={classes.Header}>
-      <input onClick={handleClick} id='myCheckbox1' checked={checked} className={checked ? classes.checked : classes.notChecked} type='checkbox' />
-      <label htmlFor='myCheckbox1'>
-        <img className={classes.music} src={music} alt='music' />
-      </label>
+      <div onClick={handleClick} role='button' className={classes.musicContainer}>
+        <input id='myCheckbox1' checked={checked} className={checked ? classes.checked : classes.notChecked} type='checkbox' />
+        <label htmlFor='myCheckbox1'>
+          <img className={classes.music} src={music} alt='music' />
+        </label>
+      </div>
 
       <div className={classes.linksContainer}>
-        <h3 className={classes.link}>About</h3>
-        <h3 className={classes.link}>Projects</h3>
-        <h3 className={classes.link}>Contact</h3>
+        <Link to='/' className={classes.link}>About</Link>
+        <Link to='/Projects' className={classes.link}>Projects</Link>
+        <Link to='/Contact' className={classes.link}>Contact</Link>
       </div>
     </header>
   );
